@@ -27,7 +27,6 @@ class TicketsController < ApplicationController
   end
 
   def update
-    return if @ticket.used?
     if @ticket.update(ticket_update_params)
       redirect_to root_path, notice: '降車しました。😄'
     else
@@ -50,6 +49,6 @@ class TicketsController < ApplicationController
   end
 
   def redirect_root_if_used
-    return redirect_to root_path, notice: '降車済みの切符です。' if @ticket.used?
+    redirect_to root_path, notice: '降車済みの切符です。' if @ticket.used?
   end
 end
